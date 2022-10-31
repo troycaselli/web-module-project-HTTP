@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
 import axios from 'axios';
+
+import {baseURL} from '../baseURL';
 
 const EditMovieForm = (props) => {
 	const { push } = useHistory();
@@ -32,7 +33,7 @@ const EditMovieForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:9000/api/movies/${id}`, movie)
+        axios.put(`${baseURL}/${id}`, movie)
             .then(res=>{
                 setMovies(res.data);
                 push(`/movies/${movie.id}`);

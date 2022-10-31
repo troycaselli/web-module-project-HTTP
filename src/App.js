@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, useHistory } from "react-router-dom";
 import axios from 'axios';
 
 import MovieList from './components/MovieList';
@@ -7,10 +7,11 @@ import Movie from './components/Movie';
 import MovieHeader from './components/MovieHeader';
 import FavoriteMovieList from './components/FavoriteMovieList';
 import EditMovieForm from './components/EditMovieForm';
-
-const baseURL = 'http://localhost:9000/api/movies';
+import {baseURL} from './baseURL';
 
 const App = (props) => {
+  const {push} = useHistory();
+
   const [movies, setMovies] = useState([]);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
 
@@ -25,7 +26,13 @@ const App = (props) => {
   }, []);
 
   const deleteMovie = (id)=> {
-    
+    axios.delete(`${baseURL}/${id}`)
+      .then(res => {
+        setMovies(res.data);
+        console.log(res);
+        push('/movies');
+      })
+      .catch(err => console.log(err));
   }
 
   const addToFavorites = (movie) => {
@@ -49,7 +56,7 @@ const App = (props) => {
             </Route>
 
             <Route path="/movies/:id">
-              <Movie/>
+              <Movie deleteMovie={deleteMovie} />
             </Route>
 
             <Route path="/movies">
