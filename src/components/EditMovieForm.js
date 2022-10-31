@@ -6,8 +6,9 @@ import axios from 'axios';
 
 const EditMovieForm = (props) => {
 	const { push } = useHistory();
+	const {id} = useParams();
 
-	const { setMovies } = props;
+	const { setMovies, movies } = props;
 	const [movie, setMovie] = useState({
 		title:"",
 		director: "",
@@ -15,7 +16,13 @@ const EditMovieForm = (props) => {
 		metascore: 0,
 		description: ""
 	});
-	
+
+	useEffect(() => {
+		movies.map((element) => {
+			if (element.id === id) setMovie(element);
+		});
+	}, []);
+
 	const handleChange = (e) => {
         setMovie({
             ...movie,
