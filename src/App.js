@@ -33,6 +33,7 @@ const App = (props) => {
     setDeleteWarning(false);
     axios.delete(`${baseURL}/${id}`)
       .then(res => {
+        setFavoriteMovies(favoriteMovies.filter(element => element.id !== id));
         setMovies(res.data);
         push('/movies');
       })
@@ -43,13 +44,18 @@ const App = (props) => {
     setDeleteWarning(!deleteWarning);
   }
 
-  const addToFavorites = (movie) => {
+  const addMovie = (movie) => {
     axios.post(baseURL, movie)
       .then(res => {
         setMovies(res.data);
         push('/movies');
       })
       .catch(err => console.log(err));
+  }
+
+  const addToFavorites = (newMovie) => {
+    const found = favoriteMovies.find(element => newMovie.id === element.id);
+    if (!found) setFavoriteMovies([...favoriteMovies, newMovie]);
   }
 
   return (
@@ -65,7 +71,7 @@ const App = (props) => {
 
           <Switch>
             <Route path="/movies/add">
-              <AddMovieForm addToFavorites={addToFavorites} />
+              <AddMovieForm addMovie={addMovie} />
             </Route>
 
             <Route path="/movies/edit/:id">
@@ -73,7 +79,18 @@ const App = (props) => {
             </Route>
 
             <Route path="/movies/:id">
-              {deleteWarning ? <DeleteMovieModal deleteMovie={deleteMovie} movie={movie} toggleWarning={toggleWarning} /> : <Movie deleteMovie={deleteMovie} toggleWarning={toggleWarning} movie={movie} setMovie={setMovie} />}
+              {deleteWarning 
+                ? <DeleteMovieModal 
+                    deleteMovie={deleteMovie} 
+                    movie={movie} toggleWarning={toggleWarning} 
+                  /> 
+                : <Movie
+                    deleteMovie={deleteMovie} 
+                    toggleWarning={toggleWarning} 
+                    movie={movie} 
+                    setMovie={setMovie} 
+                    addToFavorites={addToFavorites} 
+                  />}
             </Route>
 
             <Route path="/movies">

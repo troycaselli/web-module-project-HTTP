@@ -10,7 +10,7 @@ const initialData = {
 }
 
 const AddMovieForm = (props) => {
-    const {addToFavorites} = props;
+    const {addMovie} = props;
 
     const [newMovie, setNewMovie] = useState(initialData);
 
@@ -20,7 +20,7 @@ const AddMovieForm = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        addToFavorites(newMovie);
+        addMovie(newMovie);
         setNewMovie(initialData);
     }
 
