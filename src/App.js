@@ -8,6 +8,7 @@ import MovieHeader from './components/MovieHeader';
 import FavoriteMovieList from './components/FavoriteMovieList';
 import EditMovieForm from './components/EditMovieForm';
 import AddMovieForm from './components/AddMovieForm';
+import DeleteMovieModal from './components/DeleteMovieModal';
 import {baseURL} from './baseURL';
 
 const App = (props) => {
@@ -15,6 +16,8 @@ const App = (props) => {
 
   const [movies, setMovies] = useState([]);
   const [favoriteMovies, setFavoriteMovies] = useState([]);
+  const [deleteWarning, setDeleteWarning] = useState(false);
+  const [movie, setMovie] = useState('');
 
   useEffect(()=>{
     axios.get(baseURL)
@@ -27,12 +30,17 @@ const App = (props) => {
   }, []);
 
   const deleteMovie = (id)=> {
+    setDeleteWarning(false);
     axios.delete(`${baseURL}/${id}`)
       .then(res => {
         setMovies(res.data);
         push('/movies');
       })
       .catch(err => console.log(err));
+  }
+
+  const toggleWarning = () => {
+    setDeleteWarning(!deleteWarning);
   }
 
   const addToFavorites = (movie) => {
@@ -54,7 +62,7 @@ const App = (props) => {
         <MovieHeader/>
         <div className="row ">
           <FavoriteMovieList favoriteMovies={favoriteMovies} />
-        
+
           <Switch>
             <Route path="/movies/add">
               <AddMovieForm addToFavorites={addToFavorites} />
@@ -65,7 +73,7 @@ const App = (props) => {
             </Route>
 
             <Route path="/movies/:id">
-              <Movie deleteMovie={deleteMovie} />
+              {deleteWarning ? <DeleteMovieModal deleteMovie={deleteMovie} movie={movie} toggleWarning={toggleWarning} /> : <Movie deleteMovie={deleteMovie} toggleWarning={toggleWarning} movie={movie} setMovie={setMovie} />}
             </Route>
 
             <Route path="/movies">
