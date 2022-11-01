@@ -85,7 +85,6 @@ const App = (props) => {
                     movie={movie} toggleWarning={toggleWarning} 
                   /> 
                 : <Movie
-                    deleteMovie={deleteMovie} 
                     toggleWarning={toggleWarning} 
                     movie={movie} 
                     setMovie={setMovie} 
