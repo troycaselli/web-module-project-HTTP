@@ -7,6 +7,7 @@ import Movie from './components/Movie';
 import MovieHeader from './components/MovieHeader';
 import FavoriteMovieList from './components/FavoriteMovieList';
 import EditMovieForm from './components/EditMovieForm';
+import AddMovieForm from './components/AddMovieForm';
 import {baseURL} from './baseURL';
 
 const App = (props) => {
@@ -29,14 +30,18 @@ const App = (props) => {
     axios.delete(`${baseURL}/${id}`)
       .then(res => {
         setMovies(res.data);
-        console.log(res);
         push('/movies');
       })
       .catch(err => console.log(err));
   }
 
   const addToFavorites = (movie) => {
-    
+    axios.post(baseURL, movie)
+      .then(res => {
+        setMovies(res.data);
+        push('/movies');
+      })
+      .catch(err => console.log(err));
   }
 
   return (
@@ -48,9 +53,13 @@ const App = (props) => {
       <div className="container">
         <MovieHeader/>
         <div className="row ">
-          <FavoriteMovieList favoriteMovies={favoriteMovies}/>
+          <FavoriteMovieList favoriteMovies={favoriteMovies} />
         
           <Switch>
+            <Route path="/movies/add">
+              <AddMovieForm addToFavorites={addToFavorites} />
+            </Route>
+
             <Route path="/movies/edit/:id">
               <EditMovieForm setMovies={setMovies} movies={movies} />
             </Route>
