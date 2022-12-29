@@ -34,28 +34,67 @@ const AddMovieForm = (props) => {
                     <div className="modal-body">
                         <div className="form-group">
                             <label>Title</label>
-                            <input value={newMovie.title} onChange={handleChange} name="title" type="text" className="form-control"/>
+                            <input 
+                                className="form-control"
+                                type="text" 
+                                name="title" 
+                                value={newMovie.title} 
+                                onChange={handleChange} 
+                            />
                         </div>
                         <div className="form-group">
                             <label>Director</label>
-                            <input value={newMovie.director} onChange={handleChange} name="director" type="text" className="form-control"/>
+                            <input 
+                                className="form-control"
+                                type="text" 
+                                name="director" 
+                                value={newMovie.director} 
+                                onChange={handleChange} 
+                            />
                         </div>
                         <div className="form-group">
                             <label>Genre</label>
-                            <input value={newMovie.genre} onChange={handleChange} name="genre" type="text" className="form-control"/>
+                            <input 
+                                className="form-control"
+                                type="text" 
+                                name="genre" 
+                                value={newMovie.genre} 
+                                onChange={handleChange} 
+                            />
                         </div>
                         <div className="form-group">
                             <label>Metascore</label>
-                            <input value={newMovie.metascore} onChange={handleChange} name="metascore" type="number" className="form-control"/>
+                            <input 
+                                className="form-control"
+                                type="number" 
+                                name="metascore" 
+                                value={newMovie.metascore} 
+                                onChange={handleChange} 
+                            />
                         </div>
                         <div className="form-group">
                             <label>Description</label>
-                            <textarea value={newMovie.description} onChange={handleChange} name="description" className="form-control"></textarea>
+                            <textarea 
+                                className="form-control"
+                                name="description" 
+                                value={newMovie.description} 
+                                onChange={handleChange} 
+                            ></textarea>
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <input type="submit" className="btn btn-info" value="Add"/>
-                        <Link to={`/movies`}><input type="button" className="btn btn-default" value="Cancel"/></Link>
+                        <input 
+                            className="btn btn-info" 
+                            type="submit" 
+                            value="Add"
+                        />
+                        <Link to={`/movies`}>
+                            <input 
+                                className="btn btn-default" 
+                                type="button" 
+                                value="Cancel"
+                            />
+                        </Link>
                     </div>
                 </form>
             </div>

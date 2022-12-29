@@ -11,13 +11,13 @@ const MovieList = (props)=> {
         <div className="col">
             <table className="table table-striped table-hover">
                 <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Director</th>
-                    <th>Genre</th>
-                    <th>Metascore</th>
-                    <th></th>
-                </tr>
+                    <tr>
+                        <th>Title</th>
+                        <th>Director</th>
+                        <th>Genre</th>
+                        <th>Metascore</th>
+                        <th></th>
+                    </tr>
                 </thead>
 
                 <tbody>
