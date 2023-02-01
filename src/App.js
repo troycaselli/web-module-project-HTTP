@@ -87,7 +87,8 @@ const App = (props) => {
               {deleteWarning 
                 ? <DeleteMovieModal 
                     deleteMovie={deleteMovie} 
-                    movie={movie} toggleWarning={toggleWarning} 
+                    movie={movie} 
+                    toggleWarning={toggleWarning} 
                   /> 
                 : <Movie
                     toggleWarning={toggleWarning} 

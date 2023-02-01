@@ -3,17 +3,17 @@ body {
 	color: #566787;
 	background: #f5f5f5;
 	font-family: 'Varela Round', sans-serif;
-  font-size: 13px;
+	font-size: 13px;
 }
 
 .container {
-  padding: 3em;
-  min-width:70%;
+	padding: 3em;
+	min-width:70%;
 }
 
 .footer {
-  background: white;
-  padding: 1em;
+	background: white;
+	padding: 1em;
 }
 
 .view {
@@ -30,13 +30,13 @@ body {
 	color:black;
 }
 
-.table-title {        
+.table-title {
 	padding-bottom: 15px;
 	background: lightgrey;
 	color:#566787;
 	padding: 16px 30px;
-    min-width: 100%;
-    margin: -30px -15px 10px;
+	min-width: 100%;
+	margin: -30px -15px 10px;
 	border-radius: 3px 3px 0 0;
 }
 .table-title h2 {
@@ -68,9 +68,9 @@ body {
 }
 
 table {
-  font-size: 20px;
-  min-height: 500px;
-  border:#d2d2d2 1px solid;
+	font-size: 20px;
+	min-height: 500px;
+	border:#d2d2d2 1px solid;
 }
 
 table.table tr th, table.table tr td {
@@ -119,25 +119,29 @@ table.table .avatar {
 
 /* Modal styles */
 
+#deleteEmployeeModal {
+	margin-left: 15px;
+}
+
 .modal-dialog {
-  width:100%;
-  min-width: 100%;
+	width:100%;
+	min-width: 100%;
 }
 
 .modal-content {
-  font-size: 20px;
+	font-size: 20px;
 }
 
 .flexContainer {
-  display:flex;
-  justify-content: space-between;
+	display:flex;
+	justify-content: space-between;
 }
 
 .savedContainer {
 	display: flex;
 	flex-direction: column;
 	background: #dedede;
-    padding: 2em;
+	padding: 2em;
 	margin: 0;
 	width:250px;
 }

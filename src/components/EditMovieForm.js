@@ -41,7 +41,7 @@ const EditMovieForm = (props) => {
         e.preventDefault();
         axios.put(`${baseURL}/${id}`, movie)
             .then(res=>{
-				setFavoriteMovies([...favoriteMovies.filter(element => element.id !== id), movie]);
+				setFavoriteMovies(favoriteMovies.map(element => element.id === id ? movie : element));
                 setMovies(res.data);
                 push(`/movies/${movie.id}`);
 			})

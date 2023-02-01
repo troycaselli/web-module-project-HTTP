@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import {baseURL} from '../baseURL';
 
 const Movie = (props) => {
     const { addToFavorites, toggleWarning, movie, setMovie } = props;
-
     const { id } = useParams();
-    const { push } = useHistory();
 
     useEffect(()=>{
         axios.get(`${baseURL}/${id}`)
